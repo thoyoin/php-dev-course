@@ -1,0 +1,125 @@
+DI / IoC
+
+    What is Dependency Injection (DI)? How is DI different from Inversion of Control (IoC)?
+
+    -
+
+    Why is using new inside a class often considered a bad practice?
+
+
+    What DI styles do you know (constructor / method / setter injection)? Pros and cons of each?
+
+
+    What is a DI container and what does it do?
+
+
+    What is the Service Locator pattern and why is it considered controversial?
+
+
+    How does DI relate to the SOLID principle “Dependency Inversion Principle (DIP)”?
+
+
+HTTP / HTTPS / REST
+
+    What are the main parts of an HTTP request and an HTTP response?
+
+
+    What is the difference between HTTP and HTTPS? What does TLS provide?
+
+
+    Which HTTP methods are idempotent and why does it matter in practice?
+
+
+    What is REST (high level)? What is NOT required to call an API “REST”?
+
+
+    When would you use status codes 200 / 201 / 204 / 400 / 401 / 403 / 404 / 409 / 422 / 500?
+
+
+    How does HTTP caching work (ETag / If-None-Match, Cache-Control)?
+
+
+TypeScript
+
+    How is TypeScript different from JavaScript? What happens during compilation?
+
+
+    What’s the difference between any, unknown, and never?
+
+
+    Explain union vs intersection types, and type narrowing (type guards). Give an example.
+
+
+    interface vs type — differences and when would you choose one over the other?
+
+
+    What are generics and why are they useful? Give an example.
+
+
+    What do readonly, Partial, Pick, and Omit do?
+
+
+SQL (Transactions, Indexes)
+
+    What is a database transaction and why do we need it?
+
+
+    What does ACID stand for and what does each property mean?
+
+
+    Explain transaction isolation levels and anomalies (dirty reads, non-repeatable reads, phantom reads).
+
+
+    When would you use SELECT ... FOR UPDATE?
+
+
+    What is an index and why does it speed up reads but slow down writes?
+
+
+    How do composite indexes work and why does column order matter?
+
+
+    How can you check whether a query uses an index (EXPLAIN / query plan)?
+
+
+Laravel (MVC, Eloquent, Policies, Event Listeners)
+
+    Explain MVC in Laravel: what are the responsibilities of Model, View, and Controller?
+
+
+    What is Eloquent ORM and what are relationships?
+
+
+    What is the N+1 problem and how do you avoid it in Eloquent?
+
+
+    What is a Policy and how is it different from a Gate in Laravel?
+
+
+    Where should request validation live in Laravel and why?
+
+
+    Why do we use events and listeners? Give a real-world example.
+
+
+    Why use queues in Laravel? What benefits do they provide?
+
+
+Access Control (RBAC, ABAC)
+
+    What is the difference between authentication and authorization?
+
+
+    Explain RBAC: core concepts and how access checks typically work.
+
+
+    Explain ABAC: what attributes are involved? Give an example policy.
+
+
+    When is RBAC a better fit, and when is ABAC a better fit?
+
+
+    How would you implement “resource owner can edit, others cannot”?
+
+
+    What is the principle of least privilege, and what are common authorization mistakes?
