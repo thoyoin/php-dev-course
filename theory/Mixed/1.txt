@@ -2,22 +2,43 @@ DI / IoC
 
     What is Dependency Injection (DI)? How is DI different from Inversion of Control (IoC)?
 
-    -
+    - 'tis a pattern by which an object/class receives its dependencies externally rather than creating them in the very
+    class, thus the object doesn't instantiate them by itself. IoC is a principle by which the control over object creation
+    and application flow is delegated to some external system, such as framework or container.
 
     Why is using new inside a class often considered a bad practice?
 
+    - this is a bad practice, because thus we make tight coupling between a class and its concrete dependencies, and this leads
+    to reduced flexibility, poor testability, violation of Dependency Inversion principle, since the class depends on a concrete
+    implementation instead of abstractions.
 
     What DI styles do you know (constructor / method / setter injection)? Pros and cons of each?
 
+    - there are several ways of implementation DI pattern: with the help of constructor, method and setter injection.
+        constructor: dependencies are passed through the class constructor; object is created in ready-to-use state; this way
+    is good for required dependencies; it is less convenient for optional dependencies, may indicate that the class has
+    too many responsibility.
+        setter: dependencies are passed after an object creation; useful for optional dependencies; allows changing dependencies
+    after instantiation; object may exist in an incomplete state, doesn't guarantee that dependency is present when needed;
+        method: dependencies are passed directly into a specific method; it is good when dependency is needed only for one
+    operation; helps to avoid unnecessary dependency in object state; if dependency is needed in many methods, it becomes
+    repetitive; not suitable for core dependencies of an object.
 
     What is a DI container and what does it do?
 
+    - it is a software component that implements inversion of control by managing the creation and resolution of objects
+    and their dependencies. it by itself knows when and which implementation it is to create.
 
     What is the Service Locator pattern and why is it considered controversial?
 
+    - it is a pattern in which class retrieves its dependencies from a central registry instead of receiving them via
+    injection. it is considered to be controversial because it hides dependencies, looses testability, tight coupling.
 
     How does DI relate to the SOLID principle “Dependency Inversion Principle (DIP)”?
 
+    - DI is a technique that helps implement Dependency Inversion Principle; DIP says that high-level modules should not
+    depend on concrete implementations, instead, depend on abstractions; while DI provides a way to inject those
+    abstractions into a class externally.
 
 HTTP / HTTPS / REST
 
