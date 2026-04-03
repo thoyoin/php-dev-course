@@ -169,24 +169,42 @@ Laravel (MVC, Eloquent, Policies, Event Listeners)
 
     Explain MVC in Laravel: what are the responsibilities of Model, View, and Controller?
 
+    - it is an architecture pattern which separates an application into three parts: data, presentation and control flow.
+    In Laravel, model represents the data (Eloquent models, relationships). View - responsible for presenting data to a
+    user (in Laravel - blade.php). Controllers - handles requests and delegates functions, operations, logic to some
+    services, actions and returns a response.
 
     What is Eloquent ORM and what are relationships?
 
+    - ORM - object-relational mapping, is an instrument that allows working with a database using objects instead of raw
+    SQL. Relationships define how models are connected with each other. There are such relationships as one-to-one,
+    many-to-one, many-to-many.
 
     What is the N+1 problem and how do you avoid it in Eloquent?
 
+    - N+1 problem occurs when an application makes 1 query to fetch a list of records, and then N queries to fetch the
+    related data for each record. The solution to this problem in Eloquent is eager loading
+    ($users = User::with('posts')->get()).
 
     What is a Policy and how is it different from a Gate in Laravel?
 
+    - a Policy is a class that organizes authorization logic to a model or resource; it is related to model. a Gate -
+    is a closure-based authorization logic used for simple check.
 
     Where should request validation live in Laravel and why?
 
+    - Request validation should live in form request classes. One of the purposes is separation of logic.
 
     Why do we use events and listeners? Give a real-world example.
 
+    - events and listeners are used to decouple application part by separating what happened from what should happen next.
+    For example from my project, when a user played a track, the listener processed it and added a record to the clickhouse
+    table to update track's streams.
 
     Why use queues in Laravel? What benefits do they provide?
 
+    - Queues in Laravel allow us to run code asynchronously in the background. They used to move some heave or time-consuming
+    operations out of the main request-response cycle.
 
 Access Control (RBAC, ABAC)
 
