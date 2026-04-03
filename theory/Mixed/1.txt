@@ -87,44 +87,83 @@ TypeScript
 
     How is TypeScript different from JavaScript? What happens during compilation?
 
+    - TypeScript is a statically typed superset of JavaScript that adds types and compile-time checks. It compiles
+    to plain JavaScript.
 
     What’s the difference between any, unknown, and never?
 
+    - any is used to receive any type of value and there will be no errors, so it disables type check. unknown is used
+    when we are not sure what type we're expecting to receive, for unknown data (often you have to use type narrowing).
+    never - preserves no value; often used to represent unreachable code paths and enforce exhaustiveness.
 
     Explain union vs intersection types, and type narrowing (type guards). Give an example.
 
+    - a union type means that value can have one of several possible types. intersection - combines multiple types into
+    one. type narrowing - it is a process by which typescript reduces a broad type to a more specific one, based on the
+    checks in the code. type guard - they are typeof, in, instanceof or some custom function guard.
 
     interface vs type — differences and when would you choose one over the other?
 
+    - Interfaces are mostly used to represent objects and class contracts, while types are something more general that
+    can represent unions, intersections and more complex compositions. Also, interfaces are commonly used to model API
+    response contracts.
 
     What are generics and why are they useful? Give an example.
 
+    - generics allow to write reusable code that works with different types while preserving type safety. From my own
+    example: i have an interface that models the API response, i'm expecting paginated response with some data, the values
+    of pagination are always the same type, but the data can be different in different responses, so this is the very
+    use-case of generics: i specify the data as generics and i can reuse this interface.
 
     What do readonly, Partial, Pick, and Omit do?
 
+    - readonly makes properties immutable: they cannot be reassigned. partial - makes all properties optional
+    (type PartialUser = Partial<User>). pick - creates a type by selecting specific properties from another one.
+    omit vice versa - creates a type by removing some properties from another one.
 
 SQL (Transactions, Indexes)
 
     What is a database transaction and why do we need it?
 
+    - transaction it is a sequence of database operations treated as a single logical unit of work: it follows the
+    all-or-nothing principle: either all operations are successfully committed, or, in case of error, all changes will
+    are rolled back. Database transactions are needed to ensure data consitency.
 
     What does ACID stand for and what does each property mean?
 
+    - ACID are transaction principles; A - atomicity - the very principle of all-or-nothing; C - consistency - a transaction
+    moves the database from one valid state to another valid; I - isolation - transactions do not interfere each other;
+    D - durability - once committed, data is permanently saved.
 
     Explain transaction isolation levels and anomalies (dirty reads, non-repeatable reads, phantom reads).
 
+    - there are 4 types of isolation: READ UNCOMMITTED - the weakest isolation, in which transaction can see uncommitted
+    changes of another one; READ COMMITTED - transaction can see results of another only if it was committed. (saves
+    from dirty read); REPEATABLE READ - while transaction was not committed, nothing else cannot change or delete
+    rows, which the first one has already read. (saves from non-repeatable read & phantom read). SERIALIZABLE - the
+    strongest but the slowest type of isolation: it blocks any interactions while transaction is not committed. here
+    transactions are executed in a sequence way. (protects from any anomaly)
+    Default level of MySQL - Repeatable Read; Postgres - Read Committed.
 
     When would you use SELECT ... FOR UPDATE?
 
+    - this command is used to lock rows during a transaction; so the purpose is to update some data safely.
 
     What is an index and why does it speed up reads but slow down writes?
 
+    - an index is a data structure (usually B-Tree), that allows to find some data much faster without scanning the whole
+    table. but it slows down such operations as inserts, deletions, updates, because it has to update indexes everytime.
 
     How do composite indexes work and why does column order matter?
 
+    - a composite index is an index on multiple columns where data is sorted by the first column. column order matters,
+    because it determines how efficiently the index can be used for filtering.
 
     How can you check whether a query uses an index (EXPLAIN / query plan)?
 
+    - to check whether a query uses an index, you can use EXPLAIN or EXPLAIN ANALYZE and inspect the execution plan.
+    if the plan shows an index scan or a used key - the index is being used, if it shows sequential or full table scan -
+    it is not.
 
 Laravel (MVC, Eloquent, Policies, Event Listeners)
 
@@ -166,4 +205,4 @@ Access Control (RBAC, ABAC)
     How would you implement “resource owner can edit, others cannot”?
 
 
-    What is the principle of least privilege, and what are common authorization mistakes?
+    What is the principle of the least privilege, and what are common authorization mistakes?
