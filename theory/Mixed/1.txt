@@ -45,26 +45,27 @@ HTTP / HTTPS / REST
     What are the main parts of an HTTP request and an HTTP response?
 
     - HTTP request consists of request line (start line): request method (GET, POST...), url, http version.
-    Headers: consists of metadata: host (example.com), authorization (bearer token), content-type (application/json)...
+    Headers: consist of metadata: host (example.com), authorization (bearer token), content-type (application/json)...
     Body (optional): something that client sends to server.
     HTTP response consists of status line: http version, status code, status message; headers; body (optional).
 
     What is the difference between HTTP and HTTPS? What does TLS provide?
 
     - unlike HTTP, HTTPS is a secure version, which works over TLS/SSL. TLS provides confidentiality, integrity, authentication.
-    Actually, there are such ways of key exchange in TLS handshake as RSA and Diffie-Hellman. RSA is a deprecated one,
-    because there is no forward secrecy. Modern TLS key exchange works in the following way: both sides (client and server)
-    have private keys and public ones; they exchange their public keys with random values, and then each side uses
-    Diffie-Hellman to independently derive the same shared secret. After that TLS uses a key derivation function to
-    derive symmetric session keys from the shared secret together with the client and server random values. These
-    session keys are used to encrypt communication.
+    Actually, there are some ways of key exchange in TLS handshake: RSA or Diffie-Hellman. RSA is a deprecated one,
+    because there is no forward secrecy. Modern TLS 1.3 key exchange works in the following way: firstly a client sends
+    "hello" message to a server with its random client and ephemeral public key, the server replies with tls certificate,
+    the server random and its ephemeral public key, then client verifies certificate, if it's ok, with the help of
+    Diffie-Hellman they both independently derive identical shared secret using its own ephemeral private key and each
+    other's public key; after that, they take shared secret, server random and clinet random and derive session keys with the
+    help of key derivation function.
 
     Which HTTP methods are idempotent and why does it matter in practice?
 
     - idempotent methods are put, delete, get, patch (sometimes), options, head. The repeated request will lead to the same result
     as the first one.
 
-    What is REST (high level)? What is NOT required to call an API “REST”?
+    What is REST? What is NOT required to call an API “REST”?
 
     - REST is an architectural style based on resources and has such principles as stateless communication, uniform interface,
     client-server architecture, typically json representation (but also can be XML or HTML), cacheability, layered system
@@ -127,7 +128,7 @@ SQL (Transactions, Indexes)
 
     - transaction it is a sequence of database operations treated as a single logical unit of work: it follows the
     all-or-nothing principle: either all operations are successfully committed, or, in case of error, all changes will
-    are rolled back. Database transactions are needed to ensure data consitency.
+    be rolled back. Database transactions are needed to ensure data consistency.
 
     What does ACID stand for and what does each property mean?
 
@@ -193,7 +194,7 @@ Laravel (MVC, Eloquent, Policies, Event Listeners)
 
     Where should request validation live in Laravel and why?
 
-    - Request validation should live in form request classes. One of the purposes is separation of logic.
+    - Request validation should live in form request classes. One of the purposes is logic separation.
 
     Why do we use events and listeners? Give a real-world example.
 
@@ -210,17 +211,14 @@ Access Control (RBAC, ABAC)
 
     What is the difference between authentication and authorization?
 
+    - Authentication is a process of verifying who the user is, while authorization is a process of determining what
+    user is allowed to do.
 
     Explain RBAC: core concepts and how access checks typically work.
 
+    - role-based access control - is an access control model where permissions are assigned to roles.
 
     Explain ABAC: what attributes are involved? Give an example policy.
 
-
-    When is RBAC a better fit, and when is ABAC a better fit?
-
-
-    How would you implement “resource owner can edit, others cannot”?
-
-
-    What is the principle of the least privilege, and what are common authorization mistakes?
+    - attribute-based access control - is an access control model where access decisions are made based on some
+    attributes rather than roles. For example: if the user_id === product_id allow access.
