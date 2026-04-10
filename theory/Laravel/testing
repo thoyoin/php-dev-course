@@ -1,0 +1,55 @@
+1. unit vs feature
+    - unit tests verify isolated peaces of logic, while feature tests verify application behavior through HTTP request
+    and full system interaction.
+    Unit:
+        test services, class methods, business logic
+        don't use http, usually without database
+    Feature:
+        test endpoints, controllers, middleware, policies
+        use http, database, close to real scenario
+
+2.	RefreshDatabase
+	- it is a laravel testing trait that ensures the database reset between tests, providing clean state.
+	two ways:
+	    1. through database transactions - data is just rolled back after a test
+	        BEGIN
+	        testing
+	        ROLLBACK
+        2. migrate fresh - database is recreated
+            php artisan migrate:fresh
+    it is important because tests should not interfere each other, tests should start with the same state, should not
+    be side effects.
+
+3.	factories
+    - it is a way to easily generate test data, models. without factories, every time we gotta create manually every
+    entity like User::create([ 'name' => 'Jack', 'email' => 'example@example.com'... ]), with factories - User::factory()
+    ->create();
+    from my own exp of testing in my project, for convenience, i created a factory for user and added a premium() method,
+    so to easily create premium users when needed, using User::factory()->premium()->create();
+
+4.	actingAs()
+    - it is a basic instrument of laravel auth testing, it sets the user as authenticated.
+
+5.	database assertions
+    - these are methods used in tests to verify if specific data exists in database or not exists.
+    they are used to check side effects: whether the data was recorded, updated or deleted.
+    main methods:
+        1 assertDatabaseHas - checks if specific data is written to database.
+        2 assertDatabaseMissing - checks if there is no that specific data.
+        3 assertDatabaseCount - checks the number of records.
+
+6.	mocking dependencies
+    - it is a process of replacing real components with fake ones in tests to control behavior and isolate the code
+    under test. It helps to focus on code check instead of external system.
+    in laravel it works with the Mockery container:
+        initially u write $mock = Mockery::make(service to be mocked)
+        then $mock->shouldReceive('smth')->andReturn('smth')
+        finally $this->app->instance(Service to be mocked, $mock)
+
+7.	fakes (Storage, Queue, Mail)
+    - fakes are built-in test replacements for certain laravel services that allow u to inspect behavior without executing
+    real side effects.
+    it has:
+        Storage::fake -> substitutes file system
+        Queue::fake -> substitutes queue
+        Mail::fake -> substitutes the email sending

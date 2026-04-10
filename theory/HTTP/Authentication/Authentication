@@ -1,0 +1,34 @@
+1. Authentication vs Authorization
+    - authentication is the process of verifying the identity of a user; Authorization - the process of determining
+    what authenticated user is allowed to do and what rights does he have.
+
+2. Session-based auth
+    - it is a stateful authentication mechanism where the server stores user session data and identifies the user using
+    a session id sent in cookies.
+
+3. Token-based auth
+    - it is a stateless authentication mechanism where the client sends a token with each request, and a server uses it
+    to identify the user.
+
+4. Cookies: HttpOnly / Secure / SameSite
+    - cookies are used to store some data on the client and automatically sent with http requests to the server.
+    Cookies may maintain session_id, some tokens; but by default cookies are accessible from js and are sent automatically,
+    thus there are risks of xss and csrf attacks. But there are such flags as httpOnly (cookie cannot be accessed by js),
+    secure (the cookie is sent only over https) and SameSite (controls whether cookies are sent with cross-site requests).
+
+5. Access token vs Refresh token
+    - access token - a short-lived token used to access protected resource. refresh token - long-lived one, used to
+    obtain a new access token.
+
+6. bcrypt / Argon2 vs encryption
+    - bcrypt / argo2 - are password one-way hashing algorithms with automatic salt. Encryption is a two way algorithm,
+    so the server should maintain the key of the encrypted password thus there are risks of password stealing.
+
+7. Logout in sessions vs JWT
+    - in session-based auth, logout is performed by invalidating the session on the server, and user is immediately
+    logged out. while in token-based auth the logout process is more complex because the token remains valid until it
+    expires, so additional mechanisms like short-lived token or sum should be used.
+
+8. Sanctum vs Passport
+    - Sanctum is a lightweight authentication solution for first-party applications and simple APIs, while Passport
+    is a full OAuth2 server used for complex authorization scenarios and third-party integrations.

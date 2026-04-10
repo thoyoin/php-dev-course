@@ -1,0 +1,55 @@
+1. XSS
+    - cross-site scripting - is a vulnerability that allows an attacker to inject malicious JS code into a web page,
+    which is then executed in the victim's browser.
+    3 types of XSS:
+        1) stored - malicious code stored on the server (DB)
+        2) reflected - an attacker crafts malicious url and sends it to a victim, which opens the link and malicious
+        script in it is executed immediately.
+        3) DOM based - malicious actions are executed on the frontend
+    how to avoid such vulnerability
+        1) output escaping
+        2) httpOnly
+        3) content security policy
+2. CSRF
+    - cross-site request forgery - is an attack when malicious website tricks a user's browser to send a request to
+    another trusted website where user is authenticated. it is a vulnerability of session-based auth. an attacker abuses
+    authorized cookies that are sent automatically.
+    to avoid this type of attack the following should be used:
+        1) CSRF token (server initially generates csrf token and sends it to a client, which then stores this token and
+         uses it later on in each request, and the main thing is that it is not automatic, frontend manually attaches
+         this token to every request)
+        2) same-site cookies (use same-site cookie flag to prevent it from being sent from alien origin)
+
+3. SQL injection
+    - it is a vulnerability where an attacker injects malicious sql code into a query, allowing them to manipulate the
+    database. thus the attacker can bypass login, read other people's data, delete data, execute admin-actions.
+    to prevent this u must use prepared statements / parameterized query.
+
+4. password hashing
+    - is the process of transforming a password into a fixed, irreversible value (hash) before storing it.
+    a server does not maintain a user's password in its initial form, while encryption does, thus if database and the
+    key were stolen, it is easy to decrypt all the passwords. For example laravel uses bcrypt or argon2, they both
+    automatically add salt (random value) to password before hashing, so that even if there are identical passwords,
+    they anyway will be different because of that salt.
+
+5. CORS
+    - cross-origin resource sharing - is a Browser security mechanism that defines whether a web page can read responses
+    from a different origin.
+    there are several headers that server can use:
+        Access-control-allow-origin: https://frontend.com - defines what origin is able to read responses.
+        Access-control-allow-credentials: true - defines whether cookies are permitted.
+        Access-control-allow-methods: GET, PUT, POST - defines what methods are permitted.
+
+6. rate limiting
+    - it is a mechanism that restricts the number of requests a client can make to a server within a period of time.
+    it is used to prevent:
+        abuse (spam, api abuse, brute force)
+        DoS
+    if a client reaches the limit, he gets a 429 response - Too many requests.
+    the number of a client requests can be restricted by a user's id / IP...
+
+7. mass assignment
+    - it is a process of assigning all the attributes from a user input to a model. It can lead to unwanted results,
+    because attacker may include unexpected fields such as admin flag for example.
+    to prevent such attack u should use laravel $fillable or $guarded to control what values can be written.
+    use some validation, FormRequest, DTO.

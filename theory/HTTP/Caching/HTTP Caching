@@ -1,0 +1,26 @@
+1.	What is HTTP caching?
+    - it is a mechanism that stores responses so they can be reused for future requests, reducing latencies, server loads
+    and network usage.
+
+2.	Cache-Control and max-age
+    - cache-control is an http header that defines how, where and for how long a response can be cached. max-age specifies
+    how long a response will be considered fresh.
+
+3.	no-cache vs no-store
+    - no-cache means that the response can be stored, but must be validated with the server on each request.
+    no-store means that the response should not be stored and cached at all.
+
+4.	ETag + If-None-Match
+    - ETag - unique identifier for a specific version of an entity. if-non-matched is a request header sent by a client
+    to ask if the resource has changed. if there is no updates for the resource - server responds with 304 non modified.
+
+5.	Last-Modified vs ETag
+    - last-modified is an http response header that tells a client when the resource was last changed. clint sends
+    if-modified-since to check if there is new version.
+
+6.	Where caching happens
+    - caching can occur at multiple layers: browser, CDN, proxy and the server.
+
+7.	Caching static assets
+    - for static assets it's better to use long-lived caching with versioned filenames. Thus the browser can reuse files
+    for a long time and when a new version is deployed, the changed filename will force the client to download new version.

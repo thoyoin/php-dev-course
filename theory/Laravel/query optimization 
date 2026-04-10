@@ -1,0 +1,66 @@
+1.N+1 detection
+    - it is the process of identifying situations where one query loads some parent data and additional queries are
+    executed repeatedly for related data
+    instruments in laravel to identify n+1:
+        1. Laravel Debugbar
+        2. Laravel Telescope
+        3. DB::listen() - u can realize your automated query detector
+        4. query count threshold
+    ways of prevention such problem:
+        1. use eager loading
+        2. if u need only cound of some relation then use withCount instead of fetching all the data
+        3. use nested eager loading - User::with('posts.comments')->get()
+        4. use dynamic eager loading: write the logic in that way so that it would fetch related data only if it is
+        needed automatically.
+        5. manual join optimization: instead of nested whereHas use manual joins - User::select('users.*')->join(...)
+        6. use raw query when Eloquent becomes inefficient.
+
+2.	Indexes
+    - it is a data structure, usually a B-Tree, that helps the database find rows much faster without scanning the whole
+    table.
+    two types of indexes:
+        1. single index
+        2. composite index - index is used on multiple columns, where the order if significant, because the efficiency
+        of the index is descending from left to right.
+        3. unique - additionally guarantees uniqueness.
+
+3.	Large datasets / memory
+    - large datasets can cause performance and memory problems when too many rows are loaded into application memory
+    at once. in laravel it is especially important because eloquent hydrates each row into a model object.
+    main mistake is use of all() method while querying some data.
+    to prevent such problems u should:
+        1. use pagination
+        2. use chunk() - if u need to process a large set
+        3. use cursor() - streaming processing
+        4. u should select only needed columns
+        5. avoid eager loading on unnecessary relations.
+        6. use aggregates if needed instead of loading full relation
+
+4.	Query bottlenecks
+    - those are the main factors that make database queries slow, expensive, or resource-intensive.
+
+    most frequent bottlenecks:
+        1. missing or improper indexes
+        2. n+1 queries
+        3. large datasets / over-fetching
+        4. unoptimized joins
+        5. expensive sorting / grouping
+        6. hydration overhead in eloquent
+    how to detect bottlenecks:
+        1. Explain command
+        2. laravel debugbar
+        3. laravel telescope
+        4. DB::listen()
+
+5.	Joins / relationships optimization
+    - eloquent relationships are convenient for loading related data, especially with eager loading, but they can
+    become inefficient due to n+1 queries, overfetching. joins are often more efficient when u need flat datasets,
+    filtering, sorting or aggregation across related tables.
+
+6.	Subquery complexity
+    - it is a nested query inside another query. subqueries can become expensive when they are complex, deeply nested,
+    or executed repeatedly for many rows.
+    to prevent this problem use:
+        1. join - sometimes joins would be more efficient
+        2. withCount / aggregate query
+        3. use exists / whereExists instead of IN - sometimes it would be better

@@ -1,0 +1,31 @@
+1. What is service container
+    - it is a tool that manages class dependencies and automatically resolves them, allowing for dependency injection
+    and loose coupling.
+    this tool solves such problems as tight coupling, poor testability
+    it works in the following way: container checks the type in a constructor for example, then finds that class,
+    resolves it and passes it back to the constructor.
+
+2. Bind vs singleton
+    - bind creates a new instance on every resolve, while singleton creates one instance shared everywhere for the entire
+    application lifecycle.
+    bind is good for stateless, low-weight objects, and when u don't need the state.
+    singleton is used if the object creation is pretty expensive, when we need the only state through the whole app
+    lifecycle.
+
+3. Interface binding
+    - it is the process of mapping an interface to a concrete implementation in the service container, so laravel
+    knows which class to resolve.
+    in general, use of abstractions as class dependencies is needed for realization of dependency inversion principle.
+    it gives loose coupling, flexibility, testability.
+
+4. Service providers
+    - it is a central place where u configure and register bindings, services and application bootstrapping logic in
+    laravel.
+    it has two methods: register() and boot()
+    register is used to bind things into the service container, so here we configure dependencies
+    boot is used to run code after all services have been registered.
+
+5. $this->app->instance()
+    - it registers a specific object instance in laravel service container. it is commonly used in tests to replace
+    real services with mocks or fakes.
+    $this->app->instance(MinioService::class, $mock);

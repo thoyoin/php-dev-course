@@ -1,0 +1,24 @@
+1. job vs worker
+    - a job is a unit of work that needs to be executed asynchronously. worker - is a process that continuously listens
+    to a queue and executes jobs.
+
+2. What happens if a worker crashes during a job?
+    - if a worker crashes during a job, the job may be left uncompleted and is typically retried later by the queue
+    system. And this is why jobs should be designed to be idempotent, since the same job can be executed multiple times.
+
+3. At least once delivery
+    - it guarantees that a job will be executed at least once, but thus it may be executed multiple times, because of
+    this system must be designed to handle duplicate execution safely.
+
+4. Retries
+    - it is a mechanism that automatically re-executes failed jobs to handle temporary errors. However, because of this
+    jobs should be designed to be idempotent to avoid duplicate side effects.
+
+5. Queue backlog
+    - it is a number of jobs waiting in a queue that have not yet been processed. it occurs when jobs are produced faster
+    than they are processed.
+
+6. Scaling workers
+    - it means increasing the number or capacity of queue workers so that jobs are processed faster and the system can
+    handle a higher workload. Horizontal scaling - simply run more worker processes in parallel. Vertical scaling - give
+    workers more resources (CPU, RAM)
