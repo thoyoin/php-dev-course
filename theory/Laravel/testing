@@ -6,7 +6,7 @@
         don't use http, usually without database
     Feature:
         test endpoints, controllers, middleware, policies
-        use http, database, close to real scenario
+        use http, database, close to real scenarios
 
 2.	RefreshDatabase
 	- it is a laravel testing trait that ensures the database reset between tests, providing clean state.
@@ -17,8 +17,8 @@
 	        ROLLBACK
         2. migrate fresh - database is recreated
             php artisan migrate:fresh
-    it is important because tests should not interfere each other, tests should start with the same state, should not
-    be side effects.
+    it is important because tests should not interfere each other, tests should start with the same state, there
+    should not be side effects.
 
 3.	factories
     - it is a way to easily generate test data, models. without factories, every time we gotta create manually every

@@ -13,8 +13,9 @@
 4. Cookies: HttpOnly / Secure / SameSite
     - cookies are used to store some data on the client and automatically sent with http requests to the server.
     Cookies may maintain session_id, some tokens; but by default cookies are accessible from js and are sent automatically,
-    thus there are risks of xss and csrf attacks. But there are such flags as httpOnly (cookie cannot be accessed by js),
-    secure (the cookie is sent only over https) and SameSite (controls whether cookies are sent with cross-site requests).
+    thus there are risks of xss and csrf attacks. But there are flags that will help to prevent such attacks:
+    httpOnly (cookie cannot be accessed by js), secure (the cookie is sent only over https) and SameSite (controls
+    whether cookies are sent with cross-site requests).
 
 5. Access token vs Refresh token
     - access token - a short-lived token used to access protected resource. refresh token - long-lived one, used to

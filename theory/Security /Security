@@ -6,7 +6,7 @@
         2) reflected - an attacker crafts malicious url and sends it to a victim, which opens the link and malicious
         script in it is executed immediately.
         3) DOM based - malicious actions are executed on the frontend
-    how to avoid such vulnerability
+    How to avoid such vulnerability
         1) output escaping
         2) httpOnly
         3) content security policy
