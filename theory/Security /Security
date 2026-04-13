@@ -16,8 +16,7 @@
     authorized cookies that are sent automatically.
     to avoid this type of attack the following should be used:
         1) CSRF token (server initially generates csrf token and sends it to a client, which then stores this token and
-         uses it later on in each request, and the main thing is that it is not automatic, frontend manually attaches
-         this token to every request)
+         uses it later on in each request)
         2) same-site cookies (use same-site cookie flag to prevent it from being sent from alien origin)
 
 3. SQL injection

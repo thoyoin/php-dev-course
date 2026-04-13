@@ -1,24 +1,42 @@
-1. job vs worker
+1. what queue are used for?
+    - queue are needed to remove some heavy-weight tasks, job from the request-response cycle.
+
+2. job vs worker
     - a job is a unit of work that needs to be executed asynchronously. worker - is a process that continuously listens
     to a queue and executes jobs.
 
-2. What happens if a worker crashes during a job?
+3. What happens if a worker crashes during a job?
     - if a worker crashes during a job, the job may be left uncompleted and is typically retried later by the queue
     system. And this is why jobs should be designed to be idempotent, since the same job can be executed multiple times.
 
-3. At least once delivery
+4. At least once delivery
     - it guarantees that a job will be executed at least once, but thus it may be executed multiple times, because of
     this system must be designed to handle duplicate execution safely.
 
-4. Retries
+5. Retries
     - it is a mechanism that automatically re-executes failed jobs to handle temporary errors. However, because of this
     jobs should be designed to be idempotent to avoid duplicate side effects.
 
-5. Queue backlog
+6. Queue backlog
     - it is a number of jobs waiting in a queue that have not yet been processed. it occurs when jobs are produced faster
     than they are processed.
 
-6. Scaling workers
+7. Scaling workers
     - it means increasing the number or capacity of queue workers so that jobs are processed faster and the system can
     handle a higher workload. Horizontal scaling - simply run more worker processes in parallel. Vertical scaling - give
     workers more resources (CPU, RAM)
+
+8. multiple queues and priorities
+    - in prod env one queue - often bad idea
+    if in one queue we mix, for instance, emails, image processing, payments, analytics - heavy-weight jobs may block
+    other important ones.
+    what is usually done - several queues are divided into several levels:
+        high - critical flows, payments, stock
+        default - common jobs
+        low - analytics, cleanup, emails sometimes,
+        media - image/audio processing.
+    and those queues are launched with different policy and we may set priority to the queues execution.
+
+9. advanced queues
+    - advance queue system is not only about running jobs asynchronously, but about reliability, retries, duplicate
+    execution, idempotency, scaling.

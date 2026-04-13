@@ -18,7 +18,7 @@
 2.  Indexes
     - it is a data structure, usually a B-Tree, that helps the database find rows much faster without scanning the whole
     table.
-    two types of indexes:
+    three types of indexes:
         1. single index
         2. composite index - index is used on multiple columns, where the order is significant, because the efficiency
         of the index is descending from left to right.
