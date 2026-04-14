@@ -1,0 +1,58 @@
+1. what is composer and what is it used for in php?
+    - it is a package manager, which automates installation, update and management of third-party libraries and packages
+    for a project.
+
+2. what benefits the usage of composer gives for dependencies management?
+    - it simplifies dependencies installation and update, guarantees the same environment for all developers.
+
+3. what's the difference between composer.json and composer.lock?
+    - composer.json defines the dependencies and their version constraints, while composer.lock stores the exact versions
+    that were actually installed.
+
+4. how to create composer.json file and what it should include?
+    - u can create the file using composer init, it should contain project metadata, dependencies, autoload config,
+    and optional scripts.
+
+5. how to install some package from git-repository with the help of composer?
+    - u need to define a custom repository in composer.json and then require the package (composer install / update)
+    also u may just use composer require <URL>
+
+6. how to install a package from local filesystem?
+    - u need to define a path repository in composer.json.
+
+7. what commands are used for dependencies installation and update?
+    - composer install, composer update.
+
+8. what's the difference between composer install and update?
+    - composer install installs dependencies from composer.lock, while composer update resolves and updates dependencies
+    based on composer.json and rewrites composer.lock.
+
+9. how to delete a package from project dependencies list with the help of composer?
+    - use the command composer remove <packageName>
+
+10. how to search a package by its name?
+    - use the command composer search <searchWord>.
+
+11. what is package aliases and how to use them in composer.json?
+    - package aliases allow u to assign an alternative version name to a package.
+
+12. how to define custom scripts in composer.json?
+    - custom scripts are defined in scripts section, where each record presented as an "evet":"scenario" pair
+
+13. give an example of script usage after dependencies installation and update.
+    - post-install-cmd - executes right after the dependency installation (for instance "post-install-cmd": [
+                                                                                              "@php artisan optimize"
+                                                                                            ],)
+
+14. what may cause dependency conflicts with package installation or update?
+    - version constraints conflict (package A requires 1.0.0, package B requires 2.0.0); versions that are too strict
+    (1.2.4); composer.lock conflict
+
+15. how to avoid dependency conflicts?
+    - it is recommended to use flexible version constraints (like caret ^, tilde ~, wildcards *), avoid strict version
+    pinning, rely on composer.lock for exact versions, and update dependencies carefully.
+
+16. how to change composer configuration with the command composer config?
+    - the composer config command is used to read and modify composer configuration values, either locally in composer.json
+    or globally.
+    to check all the settings: composer config --list

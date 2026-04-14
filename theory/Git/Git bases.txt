@@ -1,0 +1,53 @@
+1. what main function does git perform?
+    - it allows to track code changes and fix it at different stages; provides teamwork, management of different
+    versions and rollbacks to them.
+
+2. what command is used for git repository initialization?
+    - git init
+
+3. what steps do u need to follow to add files to the staging area in git?
+    - git status - will show changed files, new files and files, which are in staging area; git add <file name> -
+    to add files to staging area; git commit - to fix changes.
+
+4. what happens when executing the 'git commit' command?
+    - it makes a snapshot of the project current state and all changes that before were added in staging area are fixed
+
+5. what for command 'git branch' is used?
+    - it is used for branch management: branch creation/deletion, renaming, list all the branches.
+
+6. what main branches does the 'git flow' includes?
+    - git flow includes two main branches: master and develop; also three auxiliary: feature, release and hotfix.
+
+7. which branch in git flow contains a stable code version, ready for release?
+    - master
+
+8. how to create a new branch for new feature development in git?
+    - to create a new branch use the command git branch <branch-name>: new branch is created but u stay on the previous;
+    or git checkout <branch-name>: new branch is created and u immediately go straight to it.
+
+9. how to switch to another branch?
+    - git switch <branch-name> or older command git checkout <branch-name>
+
+10. how to merge changes from one branch to another?
+    - initially u should switch to the target branch: git switch <branch-name>, then git merge <branch-to-merge>,
+    thus commit history is maintained unlike git rebase, which overwrites previous commits and makes the history linear.
+
+11. what does the command 'git push' do?
+    - it sends changes from local repository to a remote one.
+
+12. how to roll back the last commit?
+    - safe rollback of published commit - git revert: creates new commit, with no changes of the last commit;
+    rollback of local commit - git reset --soft/--mixed/--hard (--soft: changes left in staging area; --mixed (default):
+    changes left in files but not in staging area; --hard: the data is deleted fully)
+
+13. which commands are used to deal with merge conflicts in git?
+    - git status (to check conflicting files), git diff (to compare changes), git log --merge (to check conflicting
+    commits), to finish or cancel merge process: git merge --continue / git merge --abort
+
+14. which command is used for commit history search?
+    - git log (commit history)
+
+15. how to create a remote repository and connect your local repository to it?
+    - git remote add origin https://github.com/user-name/my-project.git; send a commit to a remote repo
+    git push -u origin main/master. flag -u establishes connection between local and remote repositories, so that later
+    we could use just git push.

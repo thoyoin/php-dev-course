@@ -1,0 +1,74 @@
+1. what is docker and what it's difference form virtual machines?
+    - docker is a platform that allows u to package an application and all its dependencies into a lightweight, isolated
+    environment called a container. unlike virtual machines, docker containers use one shared host core and are more
+    lightweight and faster to start, while VMs include a full OS and provide stronger isolation.
+
+2. what main components does docker-image include?
+    - base layer (base image: FROM), application code (COPY / ADD), runtime dependencies (RUN php, node...), env config
+    (ENV, ports), executable commands (CMD, ENTRYPOINT).
+
+3. Что представляет собой Dockerfile и какие инструкции можно использовать в нем?
+    - dockerfile represents instructions of docker-image creation. includex base layer (base image: FROM), application
+    code (COPY / ADD), runtime dependencies (RUN php, node...), env config (ENV, ports), executable commands (CMD,
+    ENTRYPOINT).
+
+4. what similar technologies exists and how do they differ from Docker?
+    - main analogs: Podman (daemonless), containerd, runC. while docker is an integrated application, unifying in it self
+    all the instruments of creation, building, distribution and launch of containers, others are either daemonless or
+    low-level runtime.
+
+5. what advantages docker has comparing with the analogs?
+    - besides its performance advantage: lightweight, high speed, close to native performance, - it is easy to use,
+    mature ecosystem, standardized tooling, strong integration with development and deployment workflows.
+
+6. how to use docker compose for an application deployment, consisting of web-service, php and database MySQL?
+    - u gotta make docker-compose.yml, where u are to specify 3 services: php-fpm, nginx, mysql. also in the yml
+    u should specify ports, volumes and env values.
+
+7. what is volume in docker?
+    - it is a mechanism for storing and sharing data outside of a container's filesystem, what makes it consistent
+    even after container deletion.
+
+8. how to use network in docker for communication between services?
+    - the easiest way is to specify network in docker-compose.ynl (services:
+                                                                     app:
+                                                                       image: my-app-image
+                                                                       networks:
+                                                                         - my-network
+                                                                     db:
+                                                                       image: postgres:16
+                                                                       networks:
+                                                                         - my-network
+
+                                                                   networks:
+                                                                     my-network:
+                                                                       driver: bridge)
+    also u may create it manually by the command docker network create my-network, and in the sequel run containers
+    specifying this network.
+
+9. how to make data backup and restore in docker?
+    - database backup:
+        docker exec container_name \ mysqldump -u root -p db_name > backup.sql
+        restore: docker exec -i container_name \ mysql -u root -p db_name < backup.sql
+    bind mount backup:
+        cp -r ./data ./backup
+
+10. what ways of docker-image performance optimization exist?
+    - использование легковесных образов (alpine), удаление кэша (RUN apk add --no-cache ...), объединение команд RUN -
+    это уменьшает количество слоев в образе, минимизация слоев ADD и COPY - по возможности, использовать одну COPY для
+    копирования всех файлов проекта.
+    - the usage of lightweight images (slim base images); usage of .dockerignore where we specify .git, node_modules,
+    logs, cache; also it's recommended to build image so that rarely changing steps go earlier, frequently changing -
+    later; combine commands in one RUN and clear cache; COPY only needed files.
+
+11. how to deploy an application in production-env using docker compose?
+    - u prepare production-ready images, define services in docker-compose.yml, configure environment variables,
+    volumes, networks, and then start the stack on a server with docker compose up -d.
+
+12. what instruments and best practices u know for providing application security and monitoring in docker?
+    - keep images updated (regularly rebuild images and update), scan images for vulnerabilities, do not store secrets
+    in images, use .dockerignore, use trusted repositories;
+    docker-specific security instruments:
+        Trivy - image and filesystem vulnerability scanner;
+        Docker scout - helps inspect image vulnerabilities and base image health;
+        Hadolint - dockerfile linter;
