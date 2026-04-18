@@ -7,8 +7,8 @@
     - base layer (base image: FROM), application code (COPY / ADD), runtime dependencies (RUN php, node...), env config
     (ENV, ports), executable commands (CMD, ENTRYPOINT).
 
-3. Что представляет собой Dockerfile и какие инструкции можно использовать в нем?
-    - dockerfile represents instructions of docker-image creation. includex base layer (base image: FROM), application
+3. what is Dockerfile and what instructions can we define there?
+    - dockerfile represents instructions of docker-image creation. includes base layer (base image: FROM), application
     code (COPY / ADD), runtime dependencies (RUN php, node...), env config (ENV, ports), executable commands (CMD,
     ENTRYPOINT).
 
@@ -30,7 +30,7 @@
     even after container deletion.
 
 8. how to use network in docker for communication between services?
-    - the easiest way is to specify network in docker-compose.ynl (services:
+    - the easiest way is to specify network in docker-compose.yml (services:
                                                                      app:
                                                                        image: my-app-image
                                                                        networks:
@@ -54,9 +54,6 @@
         cp -r ./data ./backup
 
 10. what ways of docker-image performance optimization exist?
-    - использование легковесных образов (alpine), удаление кэша (RUN apk add --no-cache ...), объединение команд RUN -
-    это уменьшает количество слоев в образе, минимизация слоев ADD и COPY - по возможности, использовать одну COPY для
-    копирования всех файлов проекта.
     - the usage of lightweight images (slim base images); usage of .dockerignore where we specify .git, node_modules,
     logs, cache; also it's recommended to build image so that rarely changing steps go earlier, frequently changing -
     later; combine commands in one RUN and clear cache; COPY only needed files.

@@ -1,38 +1,43 @@
-Что такое HTTP и какую роль он играет в интернете?
-    - это основа веб-взаимодействия, набор правил, по которым происходит обмен данными между клиентом и сервером.
-Как происходит взаимодействие между клиентом и сервером в HTTP?
-    - это происходит по принципу запрос-ответ.
-Какие основные компоненты включает в себя HTTP-запрос?
-    - он состоит из стартовой строки: метод, uri и версия http; заголовки: метаданные; и необязательное тело сообщения:
-    данные, к примеру, POST запроса.
-Что такое HTTP-ответ и какие компоненты он содержит?
-    - это ответ который сервер отправляет клиенту после обработки запроса. Он состоит из строки статуса: например 200;
-    заголовки: метаданные; и тело сообщения: содержит фактические данные которые запросил клиент.
-Какие существуют основные HTTP-методы?
+1. what is HTTP and what role does it play in internet?
+    - it is a base of web-interaction, set of rules, by which data exchange between client and server is performed
+
+2. How the interaction between client and server in HTTP is performed?
+    - it is performed by the request-response principle
+
+3. what main components does the HTTP-request include?
+    - HTTP request consists of request line (start line): request method (GET, POST...), url, http version.
+    Headers: consist of metadata: host (example.com), authorization (bearer token), content-type (application/json)...
+    Body (optional): something that client sends to server.
+
+4. what components does the HTTP-response include?
+    - HTTP response consists of status line: http version, status code, status message; headers; body (optional).
+
+5. what main HTTP-methods there are?
     - GET, POST, PUT, PATCH, DELETE.
-В чем разница между методами GET и POST?
-    - если рассуждать в рамках REST то GET используется для получения данных, POST для отправки данных. Также GET отображает
-    данные в URL адресе, а POST нет. GET не имеет тела сообщения в отличии от POST.
-Для чего используется метод PUT, и чем он отличается от метода PATCH?
-    - метод PUT используется для полного обновления, замены данных; PATCH в свою очередь обновляет только определенные,
-    выборочные данные, не переписывает все полностью.
-В каких случаях используется метод DELETE?
-    - он используется для удаления ресурсов по указанному URL.
-Что делает метод HEAD и в чем его основное применение?
-    - этот метод запрашивает только заголовки ответа для указанного ресурса.
-Как используется метод OPTIONS и какую информацию он предоставляет?
-    - данный метод предоставляет список доступных методов указанного ресурса.
-Как обеспечивается безопасность передачи данных по HTTP?
-    - по факту безопасность передачи данных по HTTP не обеспечивается, стоит использовать HTTPS, который добавляет
-    шифрование, такие как TCL/SSL.
-Как HTTP используется в веб-сервисах и API?
-    - он используется как протокол взаимодействия между клиентом и сервером на основании запрос-ответ модели.
-В чем заключаются основные принципы REST и как они связаны с HTTP?
-    - клиент-сервер архитектура, принцип отсутствия сохранения состояния, единообразный интерфейс, кэширование
-Как веб-сокеты расширяют возможности HTTP?
-    - веб-сокеты это по сути тоже протокол, только http работает по принципу запро-ответ и соединение прерывается,
-    а веб-сокеты устанавливают постоянное подключение (real-time).
-Какую роль играют прокси-серверы в контексте HTTP?
-    - они играют роль посредника между пользователем и веб-сайтом, выполняя несколько ключевых функций:
-    скрытие IP-адреса пользователя, кэширование данных, фильтрация трафика и обход ограничений доступа. Они принимают
-    HTTP-запрос пользователя, обрабатывают их (к примеру меняют IP-адрес на свой) и перенаправляют на целевой веб-сервер.
+
+6. what's the difference between GET and POST?
+    - GET is used for receiving some data, POST - for sending data.
+
+7. what for the PUT method is used and how is it different from PATCH?
+    - PUT is used for full update of resource; PATCH updates some piece of resource, selective data.
+
+8. what does HEAD method do and what's it purpose?
+    - this method requests only response headers for selected resource.
+
+9. how the OPTIONS method is used and what information does it provide?
+    - this method provides the list of available methods for selected resource.
+
+10. how HTTP data exchange security is performed?
+    - u should use HTTPS (secure), which adds encryption such as TCL / SSL.
+
+11. what principles does REST include and how are they connected with HTTP?
+    - client-server architecture, stateless, uniform interface, cacheability, code-on-demand, layered system.
+
+12. how do web-sockets expand HTTP opportunities?
+    - web-sockets are also protocols, but http performs the request-response principle and connection is lost, while
+    web-sockets establish permanent connection (real-time).
+
+13. what role do proxy-servers play in HTTP context?
+    - they are intermediaries between user and web-site, performing the following key functions:
+    they hide user's IP-address, data cacheability, traffic filtering, access limits bypass. they receive users's
+    http-request, process it and redirect to a target web-server.

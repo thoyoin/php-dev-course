@@ -1,0 +1,231 @@
+1. What is PHP and where is it used?
+    - it is a server-side, dynamically typed scripting language designed primarily for web development. also it is executed
+    in the server, not in the browser.
+
+2. What data types exist in PHP?
+    - there are integer, string, array, object, callable, iterable, null, mixed, float, boolean, void, never
+
+3. What is the difference between echo and print?
+    - both are language constructs, but echo does not return anything, can receive more than 1 argument while print
+    receives only 1 argument and returns 1
+
+4. What is the difference between == and ===?
+    - === enables strict type check, while == compares with type conversion
+
+5. What are arrays in PHP? What types exist?
+    - array it is a universal data structure that represents an ordered map - it stores values associated with keys,
+    which can be integer or string
+    1. indexed array
+    2. associated array
+    3. mixed
+
+6. How do isset() and empty() work?
+    - isset checks if there is a value and if it is not null.
+    empty checks if a value is empty (0, 0.0, '0', '', null, [])
+
+7. What are superglobals? Give examples.
+    - superglobals are predefined built-in php arrays that are:
+    1. available across all scopes
+    2. do not require global keyword
+        examples: $_GET (data form url query parameters), $_POST (data sent via post request), $_REQUEST (data form $_GET,
+    $_POST, $_COOKIE), $_COOKIE (contains cookies sent by a browser), $_SERVER (server and request info), $GLOBALS
+    (contains all global variables)
+    1. They all are arrays
+    2. They come from external input (thus it should be validated)
+
+8. How are parameters passed to functions — by value vs by reference?
+    - by value - function receives a copy of a variable. by reference - function works with the original value, not a copy
+    speaking of arrays passed by values the behavior is the same, but in case of objects which are passed by value, that
+    value will be changed, because the object itself is not copied.
+
+9. What are include and require? What is the difference?
+    - both are language constructs used to include and execute some code from another file, but the difference in error
+    handling: include throws a warning and script continues execution, while require will throw a fatal error and the
+    execution will be stopped.
+
+10. What are cookies and sessions? What is the difference?
+    - both are mechanisms to persist data between http requests, but cookies are stored on the browser, while sessions
+    are stored on the server, and a client only stores a session identifier (session_id).
+
+11. How do sessions work in PHP?
+    - firstly server initiates session start, checks if the request contains session id, if not - creates new session
+    and sends it to the client via cookie; if session exists, php reads it from cookie and uses it to find stored data;
+    on the next requests browser sends its session id in cookie, php finds session file and loads data.
+    ending session - session_destroy();
+
+12. What is OOP in PHP? What are the main principles?
+    - object-oriented programming is paradigm where code is organised around objects that combine data (properties) and
+    behavior (methods).
+    its core principles:
+    1. Encapsulation - allows an object to hide its internal state and implementation out of external code and provides
+        the controlled access through public methods.
+    2. Inheritance - is a mechanism by which one class can broaden another one and get its methods and properties.
+        it gives code reusability, shared base for similar classes and ability to build hierarchy.
+        it is good when classes have is-a relation, but in most other cases composition is much more suitable.
+    3. Polymorphism - it is an ability to work with different objects through one shared interface.
+        so there is a contract and different classes implement it differently. Polymorphism reduces coupling, simplifies
+        extensions; it all directly connected with SOLID, DI and architecture.
+    4. Abstraction - allows to describe an object through its essential behavior, not showing the details of implementation.
+        allows u to work at the level of meanings and contracts. it usually realized with interfaces. for instance,
+        a class receives payment system interface, this system must have pay method which that class is using, and
+        the class does not care what concrete implementation there is.
+
+13. What is the difference between public, private, and protected?
+    - public - properties and methods are available outside the class, private - available only in the very class,
+    protected - available in the class and in the child ones.
+
+14. What is a namespace and why is it used?
+    - a namespace is a way to organize your code and avoid name conflicts by grouping classes, function under a unique
+    identifier.
+        without namespace all classes live in a global scope, so if two different files define User class, it'll be a
+        conflict.
+        also namespaces are tightly connected with autoloading because it is based on it.
+
+15. What is autoloading (e.g., PSR-4)?
+    - autoloading is a mechanism that automatically loads class files when they are first used, instead of requiring
+    manually.
+    composer generates an autoloader, this file registers autoload logic and knows how to map class names -> file paths.
+    PSR-4 defines how a class name (namespace) maps to a file path.
+    1. php doesn't know the class -> triggers autoload
+    2. autoloader: takes namespace, coverts prefix App to src
+    3. includes that file and class becomes available
+
+16. What is MVC and how is it implemented in PHP?
+    - MVC is an architecture pattern which stands for model, view, controller and used for separating responsibilities
+    in application. model works with data, view is responsible for presentation and controller handles http requests
+    and delegates functions, operations, business logic to actions and services.
+
+17. What are closures?
+    - it is an anonymous function assigned to a variable.
+    1. closure can remember variables from outside with the help of "use" (function () use ($user) {...} )
+    2. closures are often used as arguments (callbacks)
+    3. they have no name
+
+18. What are traits and why are they used?
+    - trait is a mechanism for code reuse that allow u to include methods and properties into multiple classes without
+    using inheritance.
+    traits are good for logging, formatting, helpers, reusable utility logic
+    it provides ready-to-use implementations
+    but traits can hide dependencies and make code harder to understand
+
+19. What are PSR standards? Give examples.
+    - PSR (PHP standards recommendations) are set of standards defined by PHP-FIG to ensure consistency and
+    interoperability between php libraries and applications.
+    PSRs cover different areas:
+        coding style
+        autoloading
+        interfaces (logging, http, containers)
+        architecture conventions
+    examples:
+        PSR 1 - basic coding standard
+        PSR 12 - coding style - defines how code should look
+        PSR 4 - autoloading - defines how namespaces map to file paths
+        PSR 3 - logger interface
+        PSR 11 - Container interface
+
+20. How does error and exception handling work?
+    - there are two mechanisms: errors (run-time problems) and exceptions (objects you can throw and catch)
+    errors are issues detected by PHP engine
+        - warnings - script continues
+        - notice - minor issues
+        - fatal errors - script stops
+        - parse errors - syntax issue
+    exception is an object that represents an error condition and can be thrown and caught.
+    use exceptions for business logic errors, use logging for separate layers
+
+21. What is output buffering?
+    - output buffering is a mechanism where php does not send output to the client immediately, but stores it in a
+    buffer, which can later be modified or sent all at once.
+
+22. How does garbage collection work in PHP?
+    - garbage collection is the process of freeing memory that is no longer in use.
+
+23. What is the lifecycle of a PHP request?
+    - php lifecycle request it is a sequence of steps that happen from the moment a client sends an http request
+    until php returns a response.
+    1. client sends an http request
+    2. web server (nginx) receives it and then forwards it to php via php-fpm
+    3. php runtime starts (initializes environment, loads configuration)
+    4. entry point execution (public/index.php)
+    5. autoloader is registered and now all class are loaded automatically where used
+    6. framework initializes service container, configuration, routing system, middleware stack
+    7. routing (it determines which controller should handle request)
+    8. controller execution
+    9. business logic execution
+    10. model / database interaction
+    11. response creation
+    12. response send
+    13. shutdown phase
+    14. response reaches the client
+
+24. How does typing work in PHP (strict_types)?
+    - php is a dynamically typed language with optional type declarations, and strict_types controls how strictly
+    php enforces types for values.
+    so with no strict_types php uses type conversion, but using it enforces define types that exactly match with values
+    strict_types applies only to the calling file
+    for example i always use strict_types so not to have some weird implicit behavior, but safe code
+
+25. How does OPCache work?
+    - OPCache is a PHP extension that caches compiled PHP bytecode (opcodes) in memory to avoid recompiling on every
+    request.
+    without opcache every request does: php file -> compile to opcode -> execute
+    but with opcache, first request: php -> compile -> store opcode in memory; next requests: skip compiling -> use
+    cached opcode -> execute
+    cache invalidation:
+        1. file change detection
+        2. disable validation (production)
+    so thus we get much faster performance
+
+26. How does serialization work (serialize, json_encode)?
+    - serialization is the process of data conversion to string, so to save it to DB, transfer the data, cache.
+    serialize - converts data to special php-form string (it maintains data type, line length, structure)
+    but this works only inside php and is not universal format
+    json_encode - converts data to json (it works with JS, API, other languages, converted objects include only public
+    fields)
+    so json_encode is an ideal variant for API, frontend, interservice interaction
+    while serialize - good for cache inside php, sessions, inner mechanisms
+
+27. What is middleware (e.g., in Laravel/Symfony)?
+    - middleware is a layer between the incoming request and application logic, and also can act on outgoing response
+    it can:
+        1. inspect requests
+        2. modify requests
+        3. block requests
+        4. pass requests further
+        5. modify responses
+    for example in my project i've used admin middleware to group routes dedicated to admin panel, and to check incoming
+    user's role
+
+28. How does the Zend Engine work?
+    - zend engine is the core runtime engine of PHP. it is responsible for parsing, compiling and execution php code.
+    it first tokenizes and parses php code, then compiles it into opcode, then these opcodes are either executed
+    directly by the Zend VM or reused from OPCache if already cached.
+
+29. How would you design a scalable PHP architecture?
+    - i would use layered system:
+        - Presentation layer (Handles HTTP: controllers, middleware, requests) - responsible for receive input, validate
+        input format, delegate work, return response
+        - Application layer (services, actions) - this layer coordinates domain objects, repositories, external services,
+        transactions
+        - Domain layer (entities, domain services) - contains business rules and core concepts
+        - Infrastructure layer (DB repos, redis, s3 / Minio, stripe, queue drivers, mailers) - contains technical
+        implementations
+    keep controllers thin;
+    design around domains, not only technical folders;
+    use interfaces;
+    database design also matters a lot: correct indexes, query optimizations, transaction boundaries, avoiding n+1
+    problems;
+    a scalable system should distinguish between synchronous path and asynchronous
+
+30. How do frameworks like Laravel or Symfony work internally?
+    - at a high level both frameworks work like this:
+        HTTP request:
+            1. front controller (index.php)
+            2. bootstrap framework
+            3. load service container
+            4. resolve route
+            5. run middleware
+            6. execute controller
+            7. call services, domain logic
+            8. create response
+            9. send response
