@@ -1,0 +1,78 @@
+1. PHP arrays
+    - array in php is an ordered hash map. It stores pairs key - value; keys are integers or strings; maintains insertion
+    order; there are indexed, associative and mixed arrays.
+    copy-on-write - copies of arrays are not created immediately, actual copy happens only on modification.
+    key type casting - array keys are automatically converted to int if it is bool (true => 'a'; 1 => 'a'), and string
+    ('1' => 'a'; 1 => 'a')
+    speaking of array downsides:
+        1. memory - php array stores key => value, hash, metadata - so it may be heavyweight
+        2. it is not specialized - can be used in list, map, set, queue - but it's not optimal for all these tasks.
+
+2. SplQueue vs SplStack
+    - Spl (standard php library) - is set of built-in data structures in php
+    SplStack - data structure 'Stack' (LIFO - last in, first out)
+    SplQueue - data structure 'Queue' (FIFO - first in, fist out)
+
+3. copy-on-write
+    - it is an optimization, by which data is not copied immediately, but only at the moment of copy modification
+        1. memory saving
+        2. better performance
+    actually when array is copied to another variable, new variable is not created, it still in the same zval but
+    with refcount of 2
+
+4. zval
+    - it is an internal structure in Zend Engine, which stores any variable value in php; thus in php there is no
+    just int or string, it all always wrapped in zval.
+    zval {
+        value;
+        type;
+        refcount;
+        GC info;
+    }
+
+5. array vs object
+    - array is a universal data structure to store values by keys (array is good for transport data)
+    object is a class instance, that combines state and behavior (is good for domain model)
+
+6. stack / queue
+    - stack - data structure with LIFO principle (last in, first out); operations - push (add el), pop (delete upper el),
+    top/peek (to check upper el); used in undo/redo operations, parsing
+    queue - data structure with FIFO principle (first in, first out); operations - enqueue (add to end), dequeue (delete
+    from start)
+
+7. SPL structures
+    - SPL - standard php library - is set of built-in data structures in php; the core idea is to get specialized
+    structure instead of universal array.
+    array problems:
+        1. memory heavyweight
+        2. not optimal for all tasks
+        3. not always reflects meaning
+    SPL solves it all:
+        1. gives relevant structures for tasks
+        2. makes code more readable
+        3. sometimes faster and more economical
+    main SPL structures:
+        1. SplStack - stack (LIFO)
+        2. SplQueue - queue (FIFO)
+        3. SplDoublyLinkedList - base for SplStack and SplQueue
+        4. SplFixedArray - array of fixed size
+        5. SplPriorityQueue - queues with priorities
+        6. SplObjectStorage - stores objects as keys
+
+8. internal hash table
+    - internally php arrays are implemented as ordered hash tables. each key is hashed to find a bucket, which stores
+    key, value and metadata. the structure also maintains insertion order.
+
+9. collections / DTO
+    - collection - wrapper over data (usually array), that gives convenient API to work with them
+    in laravel: method collect used ( collect([1,2,3]) )
+    it has its methods:
+        1. map
+        2. filter
+        3. reduce
+        4. pluck
+        5. groupBy
+        6. sort
+        7. chunk
+        8. first, last
+    DTO - data transfer object - used for data transfer over application layers
