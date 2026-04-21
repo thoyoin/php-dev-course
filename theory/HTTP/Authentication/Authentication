@@ -22,7 +22,7 @@
     obtain a new access token.
 
 6. bcrypt / Argon2 vs encryption
-    - bcrypt / argo2 - are password one-way hashing algorithms with automatic salt. Encryption is a two way algorithm,
+    - bcrypt / argon2 - are password one-way hashing algorithms with automatic salt. Encryption is a two way algorithm,
     so the server should maintain the key of the encrypted password thus there are risks of password stealing.
 
 7. Logout in sessions vs JWT

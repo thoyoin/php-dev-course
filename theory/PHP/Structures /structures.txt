@@ -2,7 +2,7 @@
     - array in php is an ordered hash map. It stores pairs key - value; keys are integers or strings; maintains insertion
     order; there are indexed, associative and mixed arrays.
     copy-on-write - copies of arrays are not created immediately, actual copy happens only on modification.
-    key type casting - array keys are automatically converted to int if it is bool (true => 'a'; 1 => 'a'), and string
+    key type casting - array keys are automatically converted to int if it is bool (true => 'a'; 1 => 'a'), or string
     ('1' => 'a'; 1 => 'a')
     speaking of array downsides:
         1. memory - php array stores key => value, hash, metadata - so it may be heavyweight

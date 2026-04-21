@@ -47,11 +47,10 @@
     specifying this network.
 
 9. how to make data backup and restore in docker?
-    - database backup:
-        docker exec container_name \ mysqldump -u root -p db_name > backup.sql
-        restore: docker exec -i container_name \ mysql -u root -p db_name < backup.sql
-    bind mount backup:
-        cp -r ./data ./backup
+    bind mount backup, 2 ways:
+        - cp -r ./data ./backup (folder is just copied)
+        - tar czf backup.tar.gz ./data (data is wrapped into an archive and compressed) (c - create (archive), z - gzip
+        (compress the archive with gzip), f - file (specify filename))
 
 10. what ways of docker-image performance optimization exist?
     - the usage of lightweight images (slim base images); usage of .dockerignore where we specify .git, node_modules,

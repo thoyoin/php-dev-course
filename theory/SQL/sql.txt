@@ -1,0 +1,115 @@
+1. DDL
+    - data definition language - is part of sql, responsible for database structure, but not the data in the rows itself
+    with DDL we:
+        1. create tables
+        2. altering its structure
+        3. deleting tables and others objects
+        4. creating indexes, schemes, sometimes views
+    main commands:
+        CREATE, ALTER, DROP, RENAME
+    constraints - restrictions that control the allowed data - PRIMARY / FOREIGN KEY, UNIQUE, NOT NULL, CHECK, DEFAULT
+
+2. DML
+    - data manipulation language - is part of sql, responsible for manipulating the actual data stored in database
+    tables
+    main commands:
+        INSERT, DELETE, UPDATE (important to use with WHERE), SELECT
+    usually all dml operations are executed in transactions
+
+3. indexes
+    - index is a data structure that improves the speed of data retrieval operations by allowing the database to find
+    rows without scanning the whole table
+    usually index is a B-tree
+    indexes are useful in operations using WHERE, JOIN, ORDER BY, GROUP BY
+    index types:
+        1. primary index (primary key) - unique, not null, autoincrement
+        2. unique index - guarantees uniqueness, used for search
+        3. non-unique index - simple index
+        4. composite index - index for multiple columns, where order is important, because the efficiency of the index
+        is descending from left to right - it's called leftmost prefix rule
+    but indexes increase storage usage and slow down write operations such as insert, update and delete, because they
+    must be updated.
+    indexes can be clustered and non-clustered:
+        a clustered index defines the physical order of rows in the table, so the data itself stored in the index order
+        thus in a table can only be 1 clustered index
+        a non-clustered index stores indexed value along with pointers to the actual row, so it requires an additional
+        lookup
+
+4. triggers
+    - a trigger is a database object that automatically executes a defined action in response to certain events on a
+    table, such as INSERT, UPDATE, DELETE
+    trigger is always connected with the event (INSERT, UPDATE...) and execution moment (BEFORE, AFTER)
+    triggers have pseudo recordings NEW (new string version) and OLD (old string version)
+    triggers are often used in audit logs, automatic insertions (but often ORM does it), aggregations.
+    but there are disadvantages:
+        1. hidden logic
+        2. may be hard to maintain (logic can be smeared across the database)
+        3. unexpected side effects
+        4. can be performance problems
+
+5. views
+    - a view is a virtual table defined by sql query. it does not store any data but dynamically retrieves it from
+    the underlying tables
+    they are used to:
+        1. simplify difficult queries
+        2. logic reusability
+        3. security
+    there is also materialized views it is similar, but this one stores the query result, thus it is often faster but
+    u have to refresh the data
+
+6. functions
+    - a function is a database object that takes input parameters, performs some logic and returns a value
+    there are built-in function and user functions
+    built-in functions:
+        1. COUNT()
+        2. SUM()
+        3. AVG()
+        4. NOW()
+        5. LOWER()
+        6. UPPER()
+        7. LENGTH()
+    function types:
+        1. scalar function - returns one value (INT / VARCHAR / DECIMAL)
+        2. table-valued function - returns table (mysql does not have it)
+    usually functions = read-only logic; cannot use COMMIT/ROLLBACK; cannot use DDL
+    - performance (function is executed for each row)
+    - if u wrap a column with function, index is not used
+    + logic reusability
+    + readability
+    + encapsulation
+
+7. procedures
+    - procedure is a database object that encapsulates a sequence of SQL statements and can be executed to perform
+    operations on the database
+    the key difference between functions and procedures: function - return some value, procedure - perform an operation.
+    unlike functions, it can perform DDL: INSERT, DELETE, UPDATE, several operations in a row, loops
+
+8. DROP vs TRUNCATE
+    - DROP completely removes the table: its data and structure, while TRUNCATE deletes all rows but keeps the table
+    intact
+
+9. joins
+    - joins are used to combine rows from two or more tables based on a related column between them
+    main types of join:
+        1. INNER JOIN (default JOIN) - returns only matching rows from both tables
+        2. LEFT JOIN - returns all the rows from the left table, and related rows from the right one
+        3. RIGHT JOIN - vice versa
+        4. FULL OUTER JOIN - returns all the rows from both tables (not all DBMS have it)
+        5. CROSS JOIN - returns all combinations of rows from both tables
+
+10. ACID
+    - ACID are transaction principles; A - atomicity - principle of all-or-nothing; C - consistency - a transaction
+    moves the database from one valid state to another valid; I - isolation - transactions do not interfere each other;
+    D - durability - once committed, data is permanently saved.
+
+11. CAP
+    - CAP theorem states that in distributed system, it is impossible to simultaneously guarantee consistency,
+    availability and partition tolerance
+        1. consistency - all nodes see the same data at the same moment
+        2. availability - system always replies
+        3. partition tolerance - system keeps working even having lost connection or sum
+    the most important - partition tolerance; thus we got the following choice:
+        1. CP (consistency + partition tolerance) - if connection lost - it is okay for system not to reply (bank
+        systems, transactions) - it's better not to answer rather give wrong data
+        2. AP (availability + partition tolerance) - if connection lost - system replies, but it is okay if data can be
+        outdated (social networks, analytics, cache) - it's better to answer at least somehow

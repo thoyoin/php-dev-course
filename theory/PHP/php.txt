@@ -1,5 +1,5 @@
 1. What is PHP and where is it used?
-    - it is a server-side, dynamically typed scripting language designed primarily for web development. also it is executed
+    - it is a server-side, dynamically typed scripting language designed primarily for web development. it is executed
     in the server, not in the browser.
 
 2. What data types exist in PHP?
@@ -87,7 +87,7 @@
     composer generates an autoloader, this file registers autoload logic and knows how to map class names -> file paths.
     PSR-4 defines how a class name (namespace) maps to a file path.
     1. php doesn't know the class -> triggers autoload
-    2. autoloader: takes namespace, coverts prefix App to src
+    2. autoloader: takes namespace, converts prefix App to src
     3. includes that file and class becomes available
 
 16. What is MVC and how is it implemented in PHP?
@@ -102,7 +102,7 @@
     3. they have no name
 
 18. What are traits and why are they used?
-    - trait is a mechanism for code reuse that allow u to include methods and properties into multiple classes without
+    - trait is a mechanism for code reuse that allows u to include methods and properties into multiple classes without
     using inheritance.
     traits are good for logging, formatting, helpers, reusable utility logic
     it provides ready-to-use implementations
@@ -138,7 +138,10 @@
     buffer, which can later be modified or sent all at once.
 
 22. How does garbage collection work in PHP?
-    - garbage collection is the process of freeing memory that is no longer in use.
+    - garbage collection is the process of freeing memory that is no longer in use. php uses reference counting as
+    the primary mechanism. thus if a variable refcount is 0, it is automatically an immediately cleared.
+    but there is a problem - circular references - reference counting fails when object reference each other.
+    as a solution php has cycle collector: it tracks possible cyclic structures, finds it and clears.
 
 23. What is the lifecycle of a PHP request?
     - php lifecycle request it is a sequence of steps that happen from the moment a client sends an http request
@@ -161,7 +164,8 @@
 24. How does typing work in PHP (strict_types)?
     - php is a dynamically typed language with optional type declarations, and strict_types controls how strictly
     php enforces types for values.
-    so with no strict_types php uses type conversion, but using it enforces define types that exactly match with values
+    so with no strict_types php uses type conversion, but using it, strict_types enforces to define types that exactly
+    match with values
     strict_types applies only to the calling file
     for example i always use strict_types so not to have some weird implicit behavior, but safe code
 
@@ -198,8 +202,9 @@
 
 28. How does the Zend Engine work?
     - zend engine is the core runtime engine of PHP. it is responsible for parsing, compiling and execution php code.
-    it first tokenizes and parses php code, then compiles it into opcode, then these opcodes are either executed
-    directly by the Zend VM or reused from OPCache if already cached.
+    it first reads php code as text and splits it into tokens (lexer), then the parser builds an AST (abstract syntax
+    tree), then AST is compiled into opcode, then these opcodes are either executed directly by the Zend VM or reused
+    from OPCache if already cached.
 
 29. How would you design a scalable PHP architecture?
     - i would use layered system:
@@ -208,7 +213,7 @@
         - Application layer (services, actions) - this layer coordinates domain objects, repositories, external services,
         transactions
         - Domain layer (entities, domain services) - contains business rules and core concepts
-        - Infrastructure layer (DB repos, redis, s3 / Minio, stripe, queue drivers, mailers) - contains technical
+        - Infrastructure layer (DB repos, redis, Minio, stripe, queue drivers, mailers) - contains technical
         implementations
     keep controllers thin;
     design around domains, not only technical folders;
