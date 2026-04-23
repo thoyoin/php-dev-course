@@ -1,0 +1,40 @@
+1. properties visibility
+    - there are 3 types of visibility: public (can be accessed everywhere), protected (can be accessed in parent class
+    and in its inherited ones) and private (can be accessed only in the very class).
+    there is also asymmetric property visibility: different scope for reading (get) and writing (set); set visibility
+    cannot be more permissive than the default visibility ( public private(set) string $name )
+
+2. magic methods
+    - those are special methods that are automatically executed by php when certain actions are performed on an object.
+    they are: __construct(), __destruct(), _call(), __get(), __set(), __isset(), __unset(), __invoke(), __serialize(),
+    __unserialize(), __sleep(), __wakeup(), __toString(), __debugInfo()
+        __construct() - executed when object is initialized
+        __destruct() - vice versa
+        __call() - executed when invoking inaccessible methods
+        __get() - triggered when reading data from inaccessible or non-existing properties
+        __set() - is run when writing data to inaccessible or non-existing properties
+        __isset() - triggered by calling isset() or empty() on inaccessible or non-existing properties
+        __unset() - same but with unset()
+        __invoke() - executed when ure trying to call an object as a function ( $obj(5) )
+        __serialize() - defines which ones of object properties will be serialized
+        __unserialize() - defines how it would be restored
+
+3. final
+    - the final keyword prevents child classes from overring a method, property or constant by prefixing the definition
+    with final. if the class itself is being defined final then it cannot be extended
+
+4. comparing objects
+    - when using comparison operator (==): two object instances are equal if they have the same attributes and values,
+    and are instances of the same class.
+    when using identity operator (===): object variables are identical only if they refer to the same instance of the
+    same class.
+
+5. covariance and contravariance
+    - covariance allows a child's method return a more specific type than the return type of its parent's method.
+    contravariance allows a parameter type to be less specific in a child method than it is in a parent's one.
+
+6. static
+    - declaring class properties and methods as static makes them accessible without needing an instantiation of the
+    class.
+
+7. lazy objects

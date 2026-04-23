@@ -8,8 +8,8 @@
 2. Bind vs singleton
     - bind creates a new instance on every resolve, while singleton creates one instance shared everywhere for the entire
     application lifecycle.
-    bind is good for stateless, low-weight objects, and when u don't need the state.
-    singleton is used if the object creation is pretty expensive, when we need the only state through the whole app
+    bind is good for stateless, low-weight objects.
+    singleton is used if the object creation is pretty expensive, when we need the exact state through the whole app
     lifecycle.
 
 3. Interface binding

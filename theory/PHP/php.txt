@@ -54,10 +54,10 @@
     ending session - session_destroy();
 
 12. What is OOP in PHP? What are the main principles?
-    - object-oriented programming is paradigm where code is organised around objects that combine data (properties) and
-    behavior (methods).
+    - object-oriented programming is a paradigm where code is organised around objects that combine data (properties)
+    and behavior (methods).
     its core principles:
-    1. Encapsulation - allows an object to hide its internal state and implementation out of external code and provides
+    1. Encapsulation - allows an object to hide its internal state and implementation out of external code and provide
         the controlled access through public methods.
     2. Inheritance - is a mechanism by which one class can broaden another one and get its methods and properties.
         it gives code reusability, shared base for similar classes and ability to build hierarchy.
@@ -129,7 +129,7 @@
         - warnings - script continues
         - notice - minor issues
         - fatal errors - script stops
-        - parse errors - syntax issue
+        - parse errors - syntax issues
     exception is an object that represents an error condition and can be thrown and caught.
     use exceptions for business logic errors, use logging for separate layers
 
@@ -139,8 +139,8 @@
 
 22. How does garbage collection work in PHP?
     - garbage collection is the process of freeing memory that is no longer in use. php uses reference counting as
-    the primary mechanism. thus if a variable refcount is 0, it is automatically an immediately cleared.
-    but there is a problem - circular references - reference counting fails when object reference each other.
+    the primary mechanism. thus if a variable refcount is 0, it is automatically and immediately cleared.
+    but there is a problem - circular references - reference counting fails when objects reference each other.
     as a solution php has cycle collector: it tracks possible cyclic structures, finds it and clears.
 
 23. What is the lifecycle of a PHP request?

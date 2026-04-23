@@ -17,7 +17,7 @@
     - it is an optimization, by which data is not copied immediately, but only at the moment of copy modification
         1. memory saving
         2. better performance
-    actually when array is copied to another variable, new variable is not created, it still in the same zval but
+    actually when array is copied to another variable, new variable is not created, it is still in the same zval but
     with refcount of 2
 
 4. zval
@@ -31,7 +31,7 @@
     }
 
 5. array vs object
-    - array is a universal data structure to store values by keys (array is good for transport data)
+    - array is a universal data structure to store values by keys (array is good for transporting data)
     object is a class instance, that combines state and behavior (is good for domain model)
 
 6. stack / queue
@@ -66,7 +66,7 @@
 9. collections / DTO
     - collection - wrapper over data (usually array), that gives convenient API to work with them
     in laravel: method collect used ( collect([1,2,3]) )
-    it has its methods:
+    it has such methods as:
         1. map
         2. filter
         3. reduce

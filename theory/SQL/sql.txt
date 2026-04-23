@@ -1,10 +1,10 @@
 1. DDL
     - data definition language - is part of sql, responsible for database structure, but not the data in the rows itself
-    with DDL we:
+    with DDL we can:
         1. create tables
-        2. altering its structure
-        3. deleting tables and others objects
-        4. creating indexes, schemes, sometimes views
+        2. alter its structure
+        3. delete tables and others objects
+        4. create indexes, schemes, sometimes views
     main commands:
         CREATE, ALTER, DROP, RENAME
     constraints - restrictions that control the allowed data - PRIMARY / FOREIGN KEY, UNIQUE, NOT NULL, CHECK, DEFAULT
@@ -45,7 +45,7 @@
         1. hidden logic
         2. may be hard to maintain (logic can be smeared across the database)
         3. unexpected side effects
-        4. can be performance problems
+        4. can cause performance problems
 
 5. views
     - a view is a virtual table defined by sql query. it does not store any data but dynamically retrieves it from
@@ -59,7 +59,7 @@
 
 6. functions
     - a function is a database object that takes input parameters, performs some logic and returns a value
-    there are built-in function and user functions
+    there are built-in functions and user functions
     built-in functions:
         1. COUNT()
         2. SUM()
@@ -71,7 +71,7 @@
     function types:
         1. scalar function - returns one value (INT / VARCHAR / DECIMAL)
         2. table-valued function - returns table (mysql does not have it)
-    usually functions = read-only logic; cannot use COMMIT/ROLLBACK; cannot use DDL
+    usually functions = read-only logic; cannot use COMMIT/ROLLBACK; cannot use DML
     - performance (function is executed for each row)
     - if u wrap a column with function, index is not used
     + logic reusability
@@ -81,8 +81,9 @@
 7. procedures
     - procedure is a database object that encapsulates a sequence of SQL statements and can be executed to perform
     operations on the database
-    the key difference between functions and procedures: function - return some value, procedure - perform an operation.
-    unlike functions, it can perform DDL: INSERT, DELETE, UPDATE, several operations in a row, loops
+    the key difference between functions and procedures: function - is about returning some value, procedure - performing
+    an operation.
+    unlike functions, it can perform DML: INSERT, DELETE, UPDATE, several operations in a row, loops
 
 8. DROP vs TRUNCATE
     - DROP completely removes the table: its data and structure, while TRUNCATE deletes all rows but keeps the table

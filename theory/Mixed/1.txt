@@ -8,37 +8,39 @@ DI / IoC
 
     Why is using new inside a class often considered a bad practice?
 
-    - this is a bad practice, because thus we make tight coupling between a class and its concrete dependencies, and this leads
-    to reduced flexibility, poor testability, violation of Dependency Inversion principle, since the class depends on a concrete
-    implementation instead of abstractions.
+    - this is a bad practice, because thus we make tight coupling between a class and its concrete dependencies, and
+    this leads to reduced flexibility, poor testability, violation of Dependency Inversion principle, since the class
+    depends on a concrete implementation instead of abstractions.
 
     What DI styles do you know (constructor / method / setter injection)? Pros and cons of each?
 
     - there are several ways of DI implementation: constructor, method and setter injection.
-        constructor: dependencies are passed through the class constructor; object is created in ready-to-use state; this way
-    is good for required dependencies; it is less convenient for optional dependencies, may indicate that the class has
-    too many responsibility.
-        setter: dependencies are passed after an object creation; useful for optional dependencies; allows changing dependencies
-    after instantiation; object may exist in an incomplete state, doesn't guarantee that dependency is present when needed;
-        method: dependencies are passed directly into a specific method; it is good when dependency is needed only for one
-    operation; helps to avoid unnecessary dependency in object state; if dependency is needed in many methods, it becomes
-    repetitive; not suitable for core dependencies of an object.
+        constructor: dependencies are passed through the class constructor; object is created in ready-to-use state;
+    this way is good for required dependencies; it is less convenient for optional dependencies, may indicate that
+    the class has too many responsibility.
+        setter: dependencies are passed after an object creation; useful for optional dependencies; allows changing
+    dependencies after instantiation; object may exist in an incomplete state, doesn't guarantee that dependency
+    is present when needed;
+        method: dependencies are passed directly into a specific method; it is good when
+    dependency is needed only for one operation; helps to avoid unnecessary dependency in object state; if
+    dependency is needed in many methods, it becomes repetitive; not suitable for core dependencies of an object.
 
     What is a DI container and what does it do?
 
-    - it is a software component that implements inversion of control by managing the creation and resolution of objects
+    - it is a software component that takes responsibility of managing the creation and resolution of objects
     and their dependencies. it by itself knows when and which implementation it is to create.
 
     What is the Service Locator pattern and why is it considered controversial?
 
-    - it is a pattern in which class retrieves its dependencies from a central registry instead of receiving them via
-    injection. it is considered to be controversial because it hides dependencies, looses testability, tight coupling.
+    - it is a pattern in which class retrieves its dependencies by itself from a central registry instead of receiving
+    them via injection. it is considered to be controversial because it hides dependencies, looses testability, tighten
+    coupling.
 
     How does DI relate to the SOLID principle “Dependency Inversion Principle (DIP)”?
 
-    - DI is a technique that helps implement Dependency Inversion Principle; DIP says that high-level modules should not
-    depend on concrete implementations, instead, depend on abstractions; while DI provides a way to inject those
-    abstractions into a class externally.
+    - DI is a technique that helps implement Dependency Inversion Principle; DIP states that high-level modules should
+    depend on abstraction rather than concrete implementations; while DI provides those dependencies from the outside
+    into a class.
 
 HTTP / HTTPS / REST
 
@@ -62,8 +64,8 @@ HTTP / HTTPS / REST
 
     Which HTTP methods are idempotent and why does it matter in practice?
 
-    - idempotent methods are put, delete, get, patch (sometimes), options, head. The repeated request will lead to the same result
-    as the first one.
+    - idempotent methods are put, delete, get, patch (sometimes), options, head. The repeated request will lead to the
+    same result as the first one.
 
     What is REST? What is NOT required to call an API “REST”?
 
@@ -73,10 +75,10 @@ HTTP / HTTPS / REST
 
     When would you use status codes 200 / 201 / 204 / 400 / 401 / 403 / 404 / 409 / 422 / 500?
 
-    - 200: OK, the request was successfully processed, the response is sent; 201: resource creation;
-    204: No content (success, but with no body response); 400: Bad request (incorrect request); 401: Unauthorized;
-    403: Forbidden (the user is authenticated, but does not have rights); 404: Not Found; 409: Conflict; 422: Unprocessable content;
-    500: Server Error;
+    - 200: OK, the request was successfully processed, the response is sent; 201: resource creation; 204: No content
+    (success, but with no body response); 400: Bad request (incorrect request); 401: Unauthorized; 403: Forbidden (the
+    user is authenticated, but does not have rights); 404: Not Found; 409: Conflict; 422: Unprocessable content; 500:
+    Server Error;
 
     How does HTTP caching work (ETag / If-None-Match, Cache-Control)?
 

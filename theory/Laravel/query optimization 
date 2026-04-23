@@ -19,10 +19,10 @@
     - it is a data structure, usually a B-Tree, that helps the database find rows much faster without scanning the whole
     table.
     three types of indexes:
-        1. single index
+        1. index
         2. composite index - index is used on multiple columns, where the order is significant, because the efficiency
-        of the index is descending from left to right.
-        3. unique - additionally guarantees uniqueness.
+        of the index is descending from left to right. (left-most prefix rule)
+        3. unique index - additionally guarantees uniqueness.
 
 3.	Large datasets / memory
     - large datasets can cause performance and memory problems when too many rows are loaded into application memory

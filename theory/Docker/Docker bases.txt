@@ -12,8 +12,8 @@
     code (COPY / ADD), runtime dependencies (RUN php, node...), env config (ENV, ports), executable commands (CMD,
     ENTRYPOINT).
 
-4. what similar technologies exists and how do they differ from Docker?
-    - main analogs: Podman (daemonless), containerd, runC. while docker is an integrated application, unifying in it self
+4. what similar technologies exist and how do they differ from Docker?
+    - main analogs: Podman (daemonless), containerd, runC. while docker is an integrated application, unifying in itself
     all the instruments of creation, building, distribution and launch of containers, others are either daemonless or
     low-level runtime.
 
@@ -26,7 +26,7 @@
     u should specify ports, volumes and env values.
 
 7. what is volume in docker?
-    - it is a mechanism for storing and sharing data outside of a container's filesystem, what makes it consistent
+    - it is a mechanism for storing and sharing data outside a container's filesystem, what makes it consistent
     even after container deletion.
 
 8. how to use network in docker for communication between services?

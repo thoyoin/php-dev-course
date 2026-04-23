@@ -28,10 +28,19 @@
     - this method provides the list of available methods for selected resource.
 
 10. how HTTP data exchange security is performed?
-    - u should use HTTPS (secure), which adds encryption such as TCL / SSL.
+    - u should use HTTPS (secure), which adds encryption such as TCL / SSL. TLS provides confidentiality, integrity.
+    Actually, there are some ways of key exchange in TLS handshake: RSA or Diffie-Hellman. RSA is a deprecated one,
+    because there is no forward secrecy. Modern TLS 1.3 key exchange works in the following way:
+        firstly a client sends "hello" message to a server with its random client and ephemeral public key, the server
+    replies with tls certificate, the server random and its ephemeral public key, then client verifies certificate, if
+    it's ok, with the help of Diffie-Hellman they both independently derive identical shared secret using its own
+    ephemeral private key and each other's public key; after that, they take shared secret, server random and client
+    random and derive session keys with the help of key derivation function.
 
 11. what principles does REST include and how are they connected with HTTP?
-    - client-server architecture, stateless, uniform interface, cacheability, code-on-demand, layered system.
+    - REST is an architectural style based on resources and has such principles as stateless communication, uniform
+    interface, client-server architecture, typically json representation (but also can be XML or HTML), cacheability,
+    layered system and code-on-demand (optional).
 
 12. how do web-sockets expand HTTP opportunities?
     - web-sockets are also protocols, but http performs the request-response principle and connection is lost, while
